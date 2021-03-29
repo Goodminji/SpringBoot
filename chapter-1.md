@@ -1,4 +1,4 @@
-# 기초셋팅1장
+# chapter-1
 
 1.STS Pom.xml
 
