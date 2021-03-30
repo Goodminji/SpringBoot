@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
-	@RequestMapping("/")
-	public String home() {
-		return "home";
-	}
+	/* 삭제 필 - webconfig로 변경
+	 * @RequestMapping("/") public String home() { return "home"; }
+	 */
 
 }
