@@ -27,7 +27,7 @@ import tacos.data.TacoRepository;
 @Slf4j
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("order")
+@SessionAttributes("order")// 세션에 다수로 사용 - 여러개 타코 주문할 수 있도록
 public class DesignTacoController {
 
 	private final IngredientRepository ingredientRepo;
@@ -63,17 +63,19 @@ public class DesignTacoController {
 		return "design";
 		
 	}
-
+	//@ModelAttribute 각 객체가 생성이 되도록
 	@ModelAttribute(name = "order")
+	// 세션에 다수로 사용
 	public Order order() {
 		return new Order();
 	}
+	//@ModelAttribute 각 객체가 생성이 되도록
 	@ModelAttribute(name = "taco")
 	public Taco taco() {
 		return new Taco();
 	}
 	
-	// @ModelAttribute Order order 매개변수의 값이 모델로부터 전달되어야 한다는것과 스프링MVC가 이 매개변수에 요청 매개변수를 바인딩X
+	// @ModelAttribute Order order 매개변수의 값이 모델로부터 전달되어야 한다는것과 스프링MVC가 이 매개변수에 요청 매개변수를 바인딩X(??)
 	@PostMapping
 	public String processDesign(@Valid Taco disign,Errors errors,@ModelAttribute Order order) {
 		if(errors.hasErrors()) {

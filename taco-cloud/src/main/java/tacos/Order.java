@@ -29,7 +29,7 @@ public class Order {
 	@NotBlank(message="Zip")
 	private String deliveryZip;
 	
-	@CreditCardNumber(message="credit card number")
+	//@CreditCardNumber(message="credit card number")
 	private String ccNumber;
 	
 	@Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",message="MM/YY")

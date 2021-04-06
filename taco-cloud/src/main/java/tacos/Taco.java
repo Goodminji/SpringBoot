@@ -14,7 +14,7 @@ public class Taco {
 	@Size(min = 5,message="at least 5 char")
 	private String name;
 	
-	@Size(min = 1,message="at least 1 ingredient")
+	@Size(min = 1,message="at least 1 ingredients")
 	private List<Ingredient> ingredients;
 	
 	private Long id;
