@@ -15,7 +15,7 @@ public class TacoCloudApplication {
 		SpringApplication.run(TacoCloudApplication.class, args);
 	}
 
-	@Bean
+	@Bean//빈 등록하여 데이터베이스 미리 저장
 	public CommandLineRunner dataLoader(IngredientRepository repo) {
 		return new CommandLineRunner() {
 			
