@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -53,6 +54,9 @@ public class Order implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date placedAt;
+	
+	@ManyToOne// 한건의 주문이 한명의 사용자에 속함 (한명의 사용자는 여러명의 주문)
+	private User user;
 	
 	@ManyToMany(targetEntity = Taco.class)
 	private List<Taco> tacos = new ArrayList<>();
