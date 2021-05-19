@@ -66,3 +66,11 @@ auth.ldaoAuthentication
 
 * 비밀번호 비교 구성 방법은 passwordCompare\(\);
 
+3. CSRF 공격 방어하기 \(cross-site Request Forgery\) 크로스 사이트 요청 위조
+
+* 사용자가 웹 사이트에서 로그인한 상태에서 악의적인 코드가 삽입된 페이지를 열면 공격대상이 되는 웹사이트에 자동으로 폼이 제출되고 이 사이트는 위조된 공격 명령이 믿을 수 있는사용자로부터 제출 된것으로 판단하게 되어 공격으로 노출.
+*  공격을 막기 위해서는 폼의 숨긴 필드에 넣을 CSRF 토큰을 생성.
+* thymeleaf 를 스프링 시큐리티와 함께 사용중이라면 자동생성되므로 지정할 필요가 없다 &lt;form th:action&gt; - 자동으로 생성.
+
+4. 인증된 사용자 정보는 @AuthenticationPrincipal 사용해서 컨트롤러에 주
+
