@@ -39,5 +39,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 ```
 
+2. LDAP 기반 사용자 스토어
 
+```text
+protected void configure(HttpSecurity http) throws Exception{
+auth.ldaoAuthentication
+		    .userSearchFilter("(uid={0})")
+				.groupSearchFilter("member={0}");
+	}
+```
+
+* ldapAuthentication\(\) - ldap 기반 인증으로 스프링 시큐리티 구성\(jdbcAuthenticaton 처럼 사용\)
+* userSearchFilter\(\) ,groupSearchFileter 메소드는 ldap 기본 쿼리의 필터를 제공하기 위해 사용
+* 사용자 그룹모두 ldap 기본 쿼리가 비어 있어서 쿼리에 대한 검색이 ldap 계층의 루트부터 수행
+* 기준점쿼리 지정 방법 - userSearchBase\(사용자 찾기 위한 기준점\), groupSearchBase\(그룹을 찾기 위한 기준점 쿼리 기준점\)
+
+  ```text
+  protected void configure(HttpSecurity http) throws Exception{
+  auth.ldaoAuthentication
+  				.userSearchBase("ou=peple")
+  		    .userSearchFilter("(uid={0})")
+  				.groupSearchBase("ou=groups")
+  				.groupSearchFilter("member={0}");
+  	}
+  ```
+
+* 비밀번호 비교 구성 방법은 passwordCompare\(\);
 
