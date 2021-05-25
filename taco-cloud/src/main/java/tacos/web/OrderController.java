@@ -2,6 +2,9 @@ package tacos.web;
 
 import javax.validation.Valid;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +25,14 @@ import tacos.data.OrderRepository;
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("order")
+@ConfigurationProperties(prefix="taco.orders")//구성 속성설정
+//pagesize 속성 구성값을 사용 하려면 taco.orders.pageSize 이름으로 사용해야 한다.
 public class OrderController {
 
+	private int pageSize = 20;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 	private OrderRepository orderRepo;
 	
 	public OrderController(OrderRepository orderRepo) {
@@ -66,5 +75,15 @@ public class OrderController {
 		//log.info("Order submitted : " + order);
 		return "redirect:/";
 		
+	}
+	
+	@GetMapping
+	public String orderForUser(@AuthenticationPrincipal User user, Model model){
+		//인증된 사용자의 주문들을 List에 저장
+		
+		//주문을 placeAt으로 내림차순 정렬(가장 최근주문부터 오래된 주문 순서로 정렬)
+		Pageable pageable = PageRequest.of(0, pageSize);//20개만 나오도록
+		model.addAttribute("orders", orderRepo.findByUserOrderByPlacedAtDesc(user,pageable));
+		return "orderList";
 	}
 }
