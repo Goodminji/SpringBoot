@@ -67,3 +67,32 @@ greeting:
     welcome: ${spring.application.name}
 ```
 
+7. 구성 속성 설정 방
+
+```text
+@ConfigurationProperties(prefix="taco.orders")//구성 속성설정
+//pagesize 속성 구성값을 사용 하려면 taco.orders.pageSize 이름으로 사용해야 한다.
+public class OrderController {
+
+	private int pageSize = 20;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	private OrderRepository orderRepo;
+	
+	public OrderController(OrderRepository orderRepo) {
+		this.orderRepo = orderRepo;
+	}
+	.......
+```
+
+* 기본값은 20이다. 하지만 application.yml에 속성을 설정하면 쉽게 변경 가
+
+```text
+taco:
+  orders:
+    pageSize: 10
+```
+
+
+
