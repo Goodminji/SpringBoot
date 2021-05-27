@@ -67,7 +67,7 @@ greeting:
     welcome: ${spring.application.name}
 ```
 
-7. 구성 속성 설정 방
+7. 구성 속성 설정 방법 
 
 ```text
 @ConfigurationProperties(prefix="taco.orders")//구성 속성설정
@@ -86,7 +86,7 @@ public class OrderController {
 	.......
 ```
 
-* 기본값은 20이다. 하지만 application.yml에 속성을 설정하면 쉽게 변경 가
+* 기본값은 20이다. 하지만 application.yml에 속성을 설정하면 쉽게 변경 가능 
 
 ```text
 taco:
@@ -94,5 +94,27 @@ taco:
     pageSize: 10
 ```
 
+8. 구성 속성 홀더 정의 하기 
 
+* @ConfigurationProperties - 구성 데이터의 홀더로 사용되는 빈에 지정되는 경우가 많다. 컨트롤러와 이외의 다른 애플리케이션 클래스 외부에 구성 관련정보를 따로 유지할 수 잇꼬 여러 빈에 공통적인 구성 속성을 쉽게 공유 가능.
+
+```text
+@Component// 스프링 컴토넌트 검색에서 자동으로 스프링 애플리케이션 컨텍스트 빈 생성해준다.
+@ConfigurationProperties(prefix="taco.orders")
+@Data
+public class OrderProps {
+
+	 private int pageSize = 20;
+
+}
+```
+
+9. profile
+
+```text
+	@Profile({"dev","qa"}) 
+	// profile - 프로덕션 환경에서 애플리케이션이 시작될때마다 데이터 로드되는것을 방지
+	//        - dev, qa,  프로파일 중 하나가 활성화가 될때 아래 메소드가 빈이 생김(개발환경에서는 dev 활성화)
+	// @Profile("!prod") prod 파일이 활성화 되지 않을경우 빈이 생성
+```
 
