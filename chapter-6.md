@@ -117,5 +117,13 @@ public class TacoReource extends ResourceSupper{
 }
 ```
 
+11. 스프링 REST
 
+* 스프링데이터 REST는 REST 엔드포인트 자동 제공\(엔티티 클래스 이름의 복수형을 사용한다\)         
+* * ex\) localhost:8080/ingredients/FLTO \(GET 요청\)
+* 복수형을 해결 하고 싶을 때에는 @RestResoure\(rel="tocos",path="tacos"\) 애노테이션 지정해서 관계이름과 경로를 우리가 원하는 것으로 변경 가능.
+* 기본적으로 page,size,sort 제공\( ex  localhost:8080/api/tacos?size=5&page=1\)
+* HATEOAS는 처음,마지막,다음,이전 페이지의 링크를 요청 응답에 제공한다.\( ResourceProcessor도 제공한다. 이것은 리소스가 반환되기 전에 리소스를 조작하는 인터페이스다\)
+* sort 매개변수를 지정하여 결과 리스트를 정력 할 수 있따 \(ex localhost:8080/api/tacos?sort=createdAt,desc & page= 0&size=12\) 
+* @RepositoryRestController -&gt; @responseBody애노테이션을 지정하거나 해당 메서드에서 응답 데이터를 포함하는 responseEntity를 반환 해야한다 \(spring.data.rest.base-path 속성의 값이 앞에 붙은 경로를 갖는다.\)
 
