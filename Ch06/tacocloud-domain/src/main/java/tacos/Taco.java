@@ -17,7 +17,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@RestResource(rel="tacos", path="tacos")
+@RestResource(rel="tacos", path="tacos") // 스프링데이터REST 복수형 문제점을 해결 하기 위해서 관계 ㅇ름이랑 경로를 지정.
 public class Taco {
 
   @Id

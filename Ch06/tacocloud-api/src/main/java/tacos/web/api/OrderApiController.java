@@ -40,12 +40,12 @@ public class OrderApiController {
     return repo.save(order);
   }
 
-  @PutMapping(path="/{orderId}", consumes="application/json")
+  @PutMapping(path="/{orderId}", consumes="application/json")  //put 교체 의미
   public Order putOrder(@RequestBody Order order) {
     return repo.save(order);
   }
 
-  @PatchMapping(path="/{orderId}", consumes="application/json")
+  @PatchMapping(path="/{orderId}", consumes="application/json") // patch는 일부만 변경
   public Order patchOrder(@PathVariable("orderId") Long orderId,
                           @RequestBody Order patch) {
     
@@ -77,8 +77,8 @@ public class OrderApiController {
     return repo.save(order);
   }
   
-  @DeleteMapping("/{orderId}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{orderId}") // delete
+  @ResponseStatus(HttpStatus.NO_CONTENT) // HTTP 204 No CONTENT
   public void deleteOrder(@PathVariable("orderId") Long orderId) {
     try {
       repo.deleteById(orderId);

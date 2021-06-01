@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import tacos.Taco;
 import tacos.data.TacoRepository;
 
-@RestController
-@RequestMapping(path="/design",                      // <1>
+@RestController //컨트롤러의 모든 HTTP 요청 처리 메서드에서 HTTP 응답 몸체에 직섭 쓰는 값을 반환(직접 HTTP 응답으로 브라우저 전달)
+@RequestMapping(path="/design",                      // <1> /desing 경로의 요청을 처리
                 produces="application/json")
-@CrossOrigin(origins="*")        // <2>
+@CrossOrigin(origins="*")        // <2> - 서로 다른 도메인 간의 요청을 허용한다
 public class DesignTacoController {
   private TacoRepository tacoRepo;
   
@@ -37,7 +37,7 @@ public class DesignTacoController {
   }
 
   @GetMapping("/recent")
-  public Iterable<Taco> recentTacos() {                 //<3>
+  public Iterable<Taco> recentTacos() {                 //<3> /desing/recent
     PageRequest page = PageRequest.of(
             0, 12, Sort.by("createdAt").descending());
     return tacoRepo.findAll(page).getContent();
@@ -51,13 +51,16 @@ public class DesignTacoController {
 //    List<Taco> tacos = tacoRepo.findAll(page).getContent();
 //    
 //    List<TacoResource> tacoResources = 
-//        new TacoResourceAssembler().toResources(tacos);
+//        new TacoResourceAssembler().toResources(tacos); // tacoResource 객체를 저장한 리스트를 생성
+  
 //    Resources<TacoResource> recentResources = 
 //        new Resources<TacoResource>(tacoResources);
+  
 //    recentResources.add(
 //        linkTo(methodOn(DesignTacoController.class).recentTacos())
-//        .withRel("recents"));
-//    return recentResources;
+//        .withRel("recents")); recents 링크를 추가 한다.
+  
+//    return recentResources; (_self 링크를 갖는 타코들과, 이 타코들이 포함된 리스트 자체의 recents 링크를 갖는 타코 리스트를 생성한다.
 //  }
 
   
@@ -91,16 +94,16 @@ public class DesignTacoController {
 //  }
   
   //tag::postTaco[]
-  @PostMapping(consumes="application/json")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Taco postTaco(@RequestBody Taco taco) {
+  @PostMapping(consumes="application/json") // /design 의 Post 요청
+  @ResponseStatus(HttpStatus.CREATED) // HTTP 201 상태코드
+  public Taco postTaco(@RequestBody Taco taco) { // @RequestBody 는 json 데이터가 Taco 객체로 변환되어 바인딩 되도록
     return tacoRepo.save(taco);
   }
   //end::postTaco[]
   
   
-  @GetMapping("/{id}")
-  public Taco tacoById(@PathVariable("id") Long id) {
+  @GetMapping("/{id}") // /desing/{id}
+  public Taco tacoById(@PathVariable("id") Long id) { // @PathVariable에 의해 {id} 플레이스 홀더와 대응되는 id 매개변수에 실제 값이 지정
     Optional<Taco> optTaco = tacoRepo.findById(id);
     if (optTaco.isPresent()) {
       return optTaco.get();
@@ -112,9 +115,9 @@ public class DesignTacoController {
 //  public ResponseEntity<Taco> tacoById(@PathVariable("id") Long id) {
 //    Optional<Taco> optTaco = tacoRepo.findById(id);
 //    if (optTaco.isPresent()) {
-//      return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
+//      return new ResponseEntity<>(optTaco.get(), HttpStatus.OK); //HTTP 200 OK 상태코드
 //    }
-//    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND); // HTTP 404 NOT  FOUND 상태코드
 //  }
 
   

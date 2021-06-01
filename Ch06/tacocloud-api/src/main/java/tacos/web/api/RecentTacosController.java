@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import tacos.Taco;
 import tacos.data.TacoRepository;
 
-@RepositoryRestController
+@RepositoryRestController  // spring.data.rest.base-path 속성의 값이 앞에 붙은 경로를 갖는다.(/api)
 public class RecentTacosController {
 
   private TacoRepository tacoRepo;
@@ -24,6 +24,7 @@ public class RecentTacosController {
     this.tacoRepo = tacoRepo;
   }
 
+  // /api/tacos/recent
   @GetMapping(path="/tacos/recent", produces="application/hal+json")
   public ResponseEntity<Resources<TacoResource>> recentTacos() {
     PageRequest page = PageRequest.of(
@@ -31,13 +32,14 @@ public class RecentTacosController {
     List<Taco> tacos = tacoRepo.findAll(page).getContent();
 
     List<TacoResource> tacoResources = 
-        new TacoResourceAssembler().toResources(tacos);
+        new TacoResourceAssembler().toResources(tacos); // tacoResource 객체를 저장한 리스트를 생성
+    
     Resources<TacoResource> recentResources = 
             new Resources<TacoResource>(tacoResources);
     
     recentResources.add(
         linkTo(methodOn(RecentTacosController.class).recentTacos())
-            .withRel("recents"));
+            .withRel("recents"));//recents 링크를 추가 한다.
     return new ResponseEntity<>(recentResources, HttpStatus.OK);
   }
 
