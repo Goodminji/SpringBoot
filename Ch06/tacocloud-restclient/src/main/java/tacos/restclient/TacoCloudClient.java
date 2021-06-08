@@ -32,6 +32,7 @@ public class TacoCloudClient {
 
   /*
    * Specify parameter as varargs argument
+   *  getForObject
    */
   public Ingredient getIngredientById(String ingredientId) {
     return rest.getForObject("http://localhost:8080/ingredients/{id}",
@@ -70,6 +71,9 @@ public class TacoCloudClient {
 
   /*
    * Use getForEntity() instead of getForObject()
+   * 
+   * getForEntity()는 응답 결과를 나타내는 도메인 객체를 반환하는 대신 도메인 객체를 포함하는 ResponseEntity 객체 반환(응답 헤더 등) 
+   * 
    */
   // public Ingredient getIngredientById(String ingredientId) {
   //   ResponseEntity<Ingredient> responseEntity =
