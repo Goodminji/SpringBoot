@@ -74,3 +74,5 @@ auth.ldaoAuthentication
 
 4. 인증된 사용자 정보는 @AuthenticationPrincipal 사용해서 컨트롤러에 주
 
+5. SecurityContext : threadLocal 보관 되며 SecurityContextHolder 를 통해 사용 할 수 있음.
+
