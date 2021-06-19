@@ -76,3 +76,32 @@ auth.ldaoAuthentication
 
 5. SecurityContext : threadLocal 보관 되며 SecurityContextHolder 를 통해 사용 할 수 있음.
 
+6. 
+
+```text
+public ApiResult<AuthenticationResultDto> authentication(@RequestBody AuthenticationRequest authRequest) throws UnauthorizedException {
+    try {
+      JwtAuthenticationToken authToken = new JwtAuthenticationToken(authRequest.getPrincipal(), authRequest.getCredentials());
+      Authentication authentication = authenticationManager.authenticate(authToken);
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+      return OK(
+        new AuthenticationResultDto((AuthenticationResult) authentication.getDetails())
+      );
+    } catch (AuthenticationException e) {
+      throw new UnauthorizedException(e.getMessage());
+    }
+  }
+```
+
+* {@link org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter}에 대응되는 역할을 한다.
+* HTTP Request-Body 에서 로그인 파라미터\(email, password\)를 추출하고 로그인 처리를
+* {@link AuthenticationManager}로 위임한다.
+* 실제 구현 클래스는 {@link org.springframework.security.authentication.ProviderManager}이다.
+
+=&gt; 결
+
+* sernamePasswordAuthenticationFilter 디폴트 인증 필터                   사용자 인증 요청을 Authentication 인터페이스를 추상화 하여 AuthenticationManager를 호출한다. \( 요청한 아이디,비밀번호 등이 포함되어 있음\(인증처리 전\)\)
+* AuthenticationManager  사용자 아이디/비밀번호 인증 하기 위헤서 적절한 ProviderManager를 찾아 위임처리 한다.\( 
+  * AuthenticationManager  에 ProviderManager가 리스트 형식으로 되어있어 .Support 로 찾아서 성공처리하는 provider를 찾음\)
+* AuthenticationProvider  실질적으로 사용자 인증 처리를 하고 인증 결과를 Authentication으로 리턴 \( 인증 처리 정상 된 인증 내용을 담아서 옴\) 
+
