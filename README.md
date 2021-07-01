@@ -14,7 +14,7 @@ spring in action 예제 및 공부
 
 {% page-ref page="chapter-2.md" %}
 
-3. jdbc 데이터베이스 , JPA, @ModelAttribute개 
+3. jdbc 데이터베이스 , JPA, @ModelAttribute개념 
 
 {% page-ref page="chapter-3.md" %}
 

@@ -16,7 +16,7 @@ description: jdbd 데이터베이스 연걸
 
 @SessionAttributes
 
-* 세션에 계속 유지가 되면서 여러번 요청 가
+* 세션에 계속 유지가 되면서 여러번 요청 가능 
 
 PreparedStatementCreator
 
@@ -69,7 +69,7 @@ Coverter - 데이터 타입을 변환
 
 @ModelAttribute
 
-* 역할 : @ModelAttribute 어노테이션이 붙은 객체가 model에 추가가 되어서 Http로 넘어가서 뷰에서 사용가
+* 역할 : @ModelAttribute 어노테이션이 붙은 객체가 model에 추가가 되어서 Http로 넘어가서 뷰에서 사용가능 
 
 ```text
 @GetMapping
@@ -111,7 +111,7 @@ Coverter - 데이터 타입을 변환
 
    1\)  @ModelAttribute Order order 는 세션에 같은 이름으로 order 있는지 확인  세션에서 꺼내서  @ModelAttribute Order order여기에 자동저장.
 
- 2\) order.addDesign\(saved\); 커맨드객체 \( Controller 클래스 의 메소드에 매개변수로 VO 객체가 선언되어 있는것\) form태그,즉 뷰에서 가져온것도 자동으로 할
+ 2\) order.addDesign\(saved\); 커맨드객체 \( Controller 클래스 의 메소드에 매개변수로 VO 객체가 선언되어 있는것\) form태그,즉 뷰에서 가져온것도 자동으로 할당 
 
 ```text
 @RequestMapping("/design")
@@ -166,9 +166,9 @@ public class DesignTacoController {
 
   * @DATA : 인자가 있는 생성자를 자동 생성
   * @requiredArgsConstructor : private의 인자없는 생성자와 더불어 인자가 있는 생성자 모두.
-  * @GeneratedValue\(strategy = GenerationType.AUTO\) : 데이터베이스가 자동으로 생성해 주는 
+  * @GeneratedValue\(strategy = GenerationType.AUTO\) : 데이터베이스가 자동으로 생성 
   * @ManyToMany\(targetEntity = Ingredient.class\) : 두개의 객체 사의 관계 다대다
-  * @PrePersist :현재 객체가 실행되기전에 먼저 실
+  * @PrePersist :현재 객체가 실행되기전에 먼저 실행 
   * @Table\(name="Taco\__Order"\) : Taco\__Order 테이블에 저장해달라.
 
 ![](.gitbook/assets/2021-04-21-200901.png)

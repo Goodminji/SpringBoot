@@ -72,7 +72,7 @@ auth.ldaoAuthentication
 *  공격을 막기 위해서는 폼의 숨긴 필드에 넣을 CSRF 토큰을 생성.
 * thymeleaf 를 스프링 시큐리티와 함께 사용중이라면 자동생성되므로 지정할 필요가 없다 &lt;form th:action&gt; - 자동으로 생성.
 
-4. 인증된 사용자 정보는 @AuthenticationPrincipal 사용해서 컨트롤러에 주
+4. 인증된 사용자 정보는 @AuthenticationPrincipal 사용해서 컨트롤러에 주입 
 
 5. SecurityContext : threadLocal 보관 되며 SecurityContextHolder 를 통해 사용 할 수 있음.
 
@@ -98,7 +98,7 @@ public ApiResult<AuthenticationResultDto> authentication(@RequestBody Authentica
 * {@link AuthenticationManager}로 위임한다.
 * 실제 구현 클래스는 {@link org.springframework.security.authentication.ProviderManager}이다.
 
-=&gt; 결
+=&gt; 결국 
 
 * sernamePasswordAuthenticationFilter 디폴트 인증 필터                   사용자 인증 요청을 Authentication 인터페이스를 추상화 하여 AuthenticationManager를 호출한다. \( 요청한 아이디,비밀번호 등이 포함되어 있음\(인증처리 전\)\)
 * AuthenticationManager  사용자 아이디/비밀번호 인증 하기 위헤서 적절한 ProviderManager를 찾아 위임처리 한다.\( 
