@@ -9,7 +9,7 @@ spring in action 예제 및 공부
 
 
 
- 2.  lombok, View 유효성 검
+ 2.  lombok, View 유효성 검사 
 
 
 
