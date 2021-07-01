@@ -171,6 +171,7 @@ public class DesignTacoController {
   * @PrePersist :현재 객체가 실행되기전에 먼저 실
   * @Table\(name="Taco\__Order"\) : Taco\__Order 테이블에 저장해달라.
 
+// 빌더 패턴도 검색해보면 좋을 것 같아요~ 밑에 이미지 너무 귀여워요 민지님
 ![](.gitbook/assets/2021-04-21-200901.png)
 
 JPA 리퍼지터리
