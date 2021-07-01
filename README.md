@@ -2,7 +2,7 @@
 
 spring in action 예제 및 공부
 
-목차 
+## 목차 
 
 1. 스프링 부트, Spring bean 
 
