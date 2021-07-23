@@ -38,3 +38,7 @@
 * 스프링 MVC 구성하는 메서드 정의.
 * addViewControllers 메서드는 하나 이상의 뷰 컨트롤러를 등록하기 위해서 사용할 수 있는 ViewControllerRegistry를 인자로 받는다.
 
+
+
+* [https://meetup.toast.com/posts/223](https://meetup.toast.com/posts/223) \* Validate 참고 차
+
