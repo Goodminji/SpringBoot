@@ -160,12 +160,12 @@ public class DesignTacoController {
 
 * JPA 개체로 선언 - @Entity 애노테이션 추가  =&gt; @id 를 지정하여 이 속성이 데이터베이스의 개체를 고유하게 식별..
 * 설
-  * @NoArgsConstructor\(access=AccessLevel.PRIVATE,force=true\) =&gt; 인자가 없는 생성자, 
+  * @NoArgsConstructor\(access=AccessLevel.PRIVATE,force=true\) =&gt; 인자가 없는 생성자 , 기본생성자 생성 
 
     AccessLevel.PRIVATE 는 클래스 외부에서 사용 불가, final 속성이 들어 있으 force를 true로 설정하여 lombok이 자동생성한 생성자에서 null로 설정한다.
 
   * @DATA : 인자가 있는 생성자를 자동 생성
-  * @requiredArgsConstructor : private의 인자없는 생성자와 더불어 인자가 있는 생성자 모두.
+  * @requiredArgsConstructor : final ,Notnull 필드값만 파라미터로 받는 생성자  생성  
   * @GeneratedValue\(strategy = GenerationType.AUTO\) : 데이터베이스가 자동으로 생성 
   * @ManyToMany\(targetEntity = Ingredient.class\) : 두개의 객체 사의 관계 다대다
   * @PrePersist :현재 객체가 실행되기전에 먼저 실행 
