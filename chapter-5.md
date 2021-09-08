@@ -86,7 +86,7 @@ public class OrderController {
 	.......
 ```
 
-* 기본값은 20이다. 하지만 application.yml에 속성을 설정하면 쉽게 변경 가능 
+* @ConfingurationProperties 로 인해 pageSize 의 기본값은 20이다. 하지만 application.yml에 속성을 설정하면 쉽게 변경 가능 
 
 ```text
 taco:
