@@ -12,7 +12,7 @@ description: 구성속성
 
 2. 데이터 소스 구성하기
 
-* MySLQ 데이터 베이스를 사용한다면 application.yml 파일에 추가
+* MySQL 데이터 베이스를 사용한다면 application.yml 파일에 추가
 
 ```text
 spring:
